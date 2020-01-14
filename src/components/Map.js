@@ -3,24 +3,32 @@ import L from 'leaflet';
 import Car from '../models/Car';
 import POIpoint from '../models/POIpoint';
 import Carpark from '../models/Carpark';
+import 'leaflet.markercluster/dist/leaflet.markercluster';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 
 const Map = (props) => {
     const _map = useRef(0);
     const _markers = useRef(0);
     const _markersPOI = useRef(0);
     const _markersCarpark = useRef(0);
+    const _map_bounds = useRef(false);
+    const _map_city = useRef(false);
     useEffect(() => {
         _map.current = L.map('map', {
-            center: [49.8419, 24.0315],
-            zoom: 16,
+            center: [51.1089776,17.0326689],
+            zoom: 10,
             layers: [
                 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                     attribution:
-                    '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
                 }),
             ]
         })
-        _markers.current        = L.layerGroup().addTo(_map.current);
+        const clusterOptions = {
+            disableClusteringAtZoom: 12
+        }
+        _markers.current        = L.markerClusterGroup(clusterOptions).addTo(_map.current);
         _markersPOI.current     = L.layerGroup().addTo(_map.current);
         _markersCarpark.current = L.layerGroup().addTo(_map.current);
     }, []);
@@ -62,7 +70,6 @@ const Map = (props) => {
             let getIcon = (category) => {
                 let statusFolder = 'primary';
                 let categoryIcon = 'caution.png';
-                //parking-meter-export.png
                 switch (category) {
                     case 'Stacje kolejowe':
                         categoryIcon = 'train.png';
@@ -75,8 +82,8 @@ const Map = (props) => {
                 }            
                 return L.icon({
                     iconUrl: 'icons/map/' + statusFolder + '/' + categoryIcon,
-                    iconSize:     [32, 37], // size of the icon
-                    popupAnchor:  [0, -16] // point from which the popup should open relative to the iconAnchor
+                    iconSize:     [32, 37], 
+                    popupAnchor:  [0, -16]
                 });
             }
 
@@ -101,26 +108,35 @@ const Map = (props) => {
 
     useEffect(() => {
 
-        // let bounds = [
-        //     [52.1857427154, 21.0467766482],
-        //     [52.187511, 20.930528],
-        //     [52.270895221, 21.0117310234],
-        // ];
-        let bounds = [
-            [51.0662468064, 16.9946984927],
-            [51.0874242353, 17.0895922616],
-            [51.1548934591, 17.0168069707],
-        ];
-        _map.current.fitBounds(bounds);
-        // _map.current.markerClusterGroup();
+        if(!_map_bounds.current){
+            _map_bounds.current = props.points.map(function (car) {
+                return [car.location.latitude, car.location.longitude];
+            });
+            _map.current.fitBounds(_map_bounds.current);
+        }
+        if(props.centerOncity){
+            if(_map_city.current !== props.centerOncity){
+
+                if(props.centerOncity === 'warszawa'){
+                    _map.current.panTo([52.2319237,21.0067265]);
+                    _map.current.setZoom(11);
+                    _map_city.current = 'warszawa';
+                } else {
+                    // wroclaw
+                    _map.current.panTo([51.1089776,17.0326689]);
+                    _map.current.setZoom(11);
+                    _map_city.current = 'wroclaw';
+                }
+            }
+        }
 
         let getIcon = (status, carType) => {
             let statusFolder = (status === 'AVAILABLE') ? 'success' : 'danger';
             let iconName = (carType === 'TRUCK') ? 'truck3.png' : 'car.png';
             return L.icon({
                 iconUrl: 'icons/map/' + statusFolder + '/' + iconName,
-                iconSize:     [32, 37], // size of the icon
-                popupAnchor:  [0, -16] // point from which the popup should open relative to the iconAnchor
+                iconSize:     [32, 37], 
+                popupAnchor:  [0, -16]
             });
         }
 
@@ -138,64 +154,10 @@ const Map = (props) => {
             _markers.current.addLayer(marker);
         })
 
-    },[props.points]);
-
-    // useEffect(() => {
-
-    //     /**
-    //      * @param {Car} car - Car Object
-    //      */
-    //     // let bounds = props.points.map(function (car) {
-    //     //     return [car.location.latitude, car.location.longitude];
-    //     // });
-    //     let bounds = [
-    //         [52.1857427154, 21.0467766482],
-    //         [52.187511, 20.930528],
-    //         [52.270895221, 21.0117310234],
-    //     ];
-            
-    //     // create map
-    //     let carsMap = L.map('map', {
-    //         center: [49.8419, 24.0315],
-    //         zoom: 16,
-    //         layers: [
-    //             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    //                 attribution:
-    //                 '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    //             }),
-    //         ]
-    //     })
-    //     carsMap.fitBounds(bounds);
-
-        
-    //     let getIcon = (status, carType) => {
-    //         let statusFolder = (status === 'AVAILABLE') ? 'primary' : 'warning';
-    //         let iconName = (carType === 'TRUCK') ? 'truck3.png' : 'car.png';
-    //         return L.icon({
-    //             iconUrl: 'icons/map/' + statusFolder + '/' + iconName,
-    //             iconSize:     [32, 37], // size of the icon
-    //             popupAnchor:  [0, -16] // point from which the popup should open relative to the iconAnchor
-    //         });
-    //     }
-
-    //     /**
-    //      * @param {Car} car - Car Object
-    //      */
-    //     let formatPopup = (car) => {
-    //         return `Typ:${car.type} ${car.platesNumber} <br />Bateria: ${car.batteryLevelPct}<br /> Status: ${car.status} <br />GPS: [${car.location.latitude}, ${car.location.longitude}]<br />`;
-    //     }
-    //     console.log(typeof carsMap);
-    //     props.points.forEach((el, idx, arr) => {
-    //         const car = new Car(el);
-            
-    //         L.marker([car.location.latitude, car.location.longitude], {icon: getIcon(car.status, car.type) })
-    //          .addTo(carsMap)
-    //          .bindPopup(formatPopup(car));
-    //     })
-        
-    // }, [props.points]);
+    },[props.points, props.centerOncity]);
 
     return <div id="map"></div>
+
 }
 
 export default Map;

@@ -1,0 +1,62 @@
+#toggle {
+    height: 100px;
+    padding: 20px 0;
+    position: relative;
+    background-color: #2d2d2d;
+}
+
+#toggle:hover {
+    cursor: pointer
+}
+
+#toggle:before,#toggle:after {
+    content: '';
+    height: 4px;
+    width: 26px;
+    background: #5b5b5b;
+    left: 36px;
+    position: absolute;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transition: -webkit-transform .25s;
+    transition: transform .25s;
+    top: 48px
+}
+
+#toggle:before {
+    -webkit-transform: translate3d(0,-8px,0);
+    transform: translate3d(0,-8px,0)
+}
+
+#toggle.open:before {
+    -webkit-transform: rotate3d(0,0,1,45deg);
+    transform: rotate3d(0,0,1,45deg)
+}
+
+#toggle.open:after {
+    -webkit-transform: rotate3d(0,0,1,-45deg);
+    transform: rotate3d(0,0,1,-45deg)
+}
+
+#toggle:after {
+    -webkit-transform: translate3d(0,8px,0);
+    transform: translate3d(0,8px,0)
+}
+
+#toggle .menu-line {
+    width: 26px;
+    height: 4px;
+    background: #5b5b5b;
+    left: 36px;
+    position: absolute;
+    -webkit-transition: opacity .25s;
+    -moz-transition: opacity .25s;
+    -ms-transition: opacity .25s;
+    -o-transition: opacity .25s;
+    transition: opacity .25s;
+    top: 48px
+}
+
+#toggle.open .menu-line {
+    opacity: 0
+}

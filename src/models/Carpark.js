@@ -1,27 +1,32 @@
 class Carpark {
+    discriminator;
+    address;
+    // this.address = {
+    //     street,
+    //     house,
+    //     city,
+    // };
+    spacesCount;        
+    availableSpacesCount;
+    chargers;
+    color;
+    // color = {
+    //     rgb,
+    //     alpha,
+    // };
+    pictureId;
+    id;
+    name;
+    description;
+    location;
+    // location = {
+    //     latitude,
+    //     longitude,
+    // };
+    metadata;
+    
     constructor(data){
-        this.discriminator         = data.discriminator;
-        // this.address             = {
-        //     street : data.address.street,
-        //     house  : data.address.house,
-        //     city   : data.address.city,
-        // };
-        this.spacesCount          = data.spacesCount;        
-        this.availableSpacesCount = data.availableSpacesCount;
-        // this.chargers               = data.chargers;
-        this.color                = {
-            rgb   : data.color.rgb,
-            alpha : data.color.alpha,
-        };
-        this.pictureId            = data.pictureId;
-        this.id                   = data.id;
-        this.name                 = data.name;
-        this.description          = data.description;
-        this.location             = {
-            latitude  : data.location.latitude,
-            longitude : data.location.longitude,
-        };
-        this.metadata             = data.metadata;
+        Object.assign(this, data);
     }
 }
 export default Carpark;
