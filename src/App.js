@@ -55,9 +55,9 @@ function App() {
     }, [filter, POI, carparks, cars]);
 
     useEffect(() => {
-        let carsEndpoint = (process.env.NODE_ENV === 'development') ? 'mockup-data/map-cars.json' : 'https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE';
-        let carparksEndpoint = (process.env.NODE_ENV === 'development') ? 'mockup-data/map-carparks.json' : 'https://dev.vozilla.pl/api-client-portal/map?objectType=PARKING';
-        let poiEndpoint = (process.env.NODE_ENV === 'development') ? 'mockup-data/map-poi.json' : 'https://dev.vozilla.pl/api-client-portal/map?objectType=POI';
+        let carsEndpoint = (process.env.NODE_ENV === 'development') ? 'mockup-data/map-cars.json' : 'https://kamilnowak.com/github/carsmap/mockup-data/map-cars.json';
+        let carparksEndpoint = (process.env.NODE_ENV === 'development') ? 'mockup-data/map-carparks.json' : 'https://kamilnowak.com/github/carsmap/mockup-data/map-carparks.json';
+        let poiEndpoint = (process.env.NODE_ENV === 'development') ? 'mockup-data/map-poi.json' : 'https://kamilnowak.com/github/carsmap/mockup-data/map-poi.json';
         axios.get(carsEndpoint).then(({ data }) => { setFCars(data.objects); setCars(data.objects); });
         axios.get(poiEndpoint).then(({ data }) => { setFPOI(data.objects); setPOI(data.objects); });
         axios.get(carparksEndpoint).then(({ data }) => { setFCarparks(data.objects); setCarparks(data.objects); });
