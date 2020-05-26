@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/carsmap/static/css/main.59bbe48a.chunk.css",
-    "main.js": "/carsmap/static/js/main.97f839a2.chunk.js",
-    "main.js.map": "/carsmap/static/js/main.97f839a2.chunk.js.map",
+    "main.js": "/carsmap/static/js/main.1b20926a.chunk.js",
+    "main.js.map": "/carsmap/static/js/main.1b20926a.chunk.js.map",
     "runtime-main.js": "/carsmap/static/js/runtime-main.9a4d40fa.js",
     "runtime-main.js.map": "/carsmap/static/js/runtime-main.9a4d40fa.js.map",
     "static/css/2.05e2f46e.chunk.css": "/carsmap/static/css/2.05e2f46e.chunk.css",
     "static/js/2.eae830d2.chunk.js": "/carsmap/static/js/2.eae830d2.chunk.js",
     "static/js/2.eae830d2.chunk.js.map": "/carsmap/static/js/2.eae830d2.chunk.js.map",
     "index.html": "/carsmap/index.html",
-    "precache-manifest.7cd74a00ce4ade8a5df4c7f906c1009f.js": "/carsmap/precache-manifest.7cd74a00ce4ade8a5df4c7f906c1009f.js",
+    "precache-manifest.ccfc1d2d5512d0e8fde69baee9f386d3.js": "/carsmap/precache-manifest.ccfc1d2d5512d0e8fde69baee9f386d3.js",
     "service-worker.js": "/carsmap/service-worker.js",
     "static/css/2.05e2f46e.chunk.css.map": "/carsmap/static/css/2.05e2f46e.chunk.css.map",
     "static/css/main.59bbe48a.chunk.css.map": "/carsmap/static/css/main.59bbe48a.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.05e2f46e.chunk.css",
     "static/js/2.eae830d2.chunk.js",
     "static/css/main.59bbe48a.chunk.css",
-    "static/js/main.97f839a2.chunk.js"
+    "static/js/main.1b20926a.chunk.js"
   ]
 }
