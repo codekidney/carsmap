@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a228ec12a38a539a973648acadae7049",
+    "revision": "365c5c952e3a89cb4abc0f72f5675679",
     "url": "/carsmap/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/carsmap/static/css/2.05e2f46e.chunk.css"
   },
   {
-    "revision": "f760ef695e59bbf334d8",
+    "revision": "8b0faefc386060528bfd",
     "url": "/carsmap/static/css/main.59bbe48a.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/carsmap/static/js/2.eae830d2.chunk.js.LICENSE"
   },
   {
-    "revision": "f760ef695e59bbf334d8",
-    "url": "/carsmap/static/js/main.5cc20891.chunk.js"
+    "revision": "8b0faefc386060528bfd",
+    "url": "/carsmap/static/js/main.97f839a2.chunk.js"
   },
   {
     "revision": "a3f34e902d52e854346b",
